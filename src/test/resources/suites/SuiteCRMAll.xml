@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Project Ralph Lauren by HienPham" verbose="1" parallel="tests">
+
+    <test name="Ralph Lauren" parallel="methods">
+        <parameter name="browser" value="chrome"></parameter>
+        <classes>
+            <class name="ProjectRalphLauren.testcases.SignInTest"/>
+        </classes>
+    </test>
+
+</suite>
