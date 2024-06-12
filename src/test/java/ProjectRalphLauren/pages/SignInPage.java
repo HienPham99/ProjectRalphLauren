@@ -60,8 +60,10 @@ public class SignInPage {
 
     public MyAccountPage signInRalphLauren(String email, String password) {
         // WebUI.sleep(2);
-        WebUI.opeURL(PropertiesHelper.getValue("url"));
+        WebUI.opeURL("https://storefront:rldev@development-sg.sfcc-ralphlauren-as.com");//PropertiesHelper.getValue("url"));
         WebUI.waitForPageLoaded();
+        WebUI.sleep(5);
+        WebUI.checkElementExist(noThanksLink);
         WebUI.clickElement(noThanksLink);
         WebUI.sleep(2);
         WebUI.clickElement(iconSignIn);

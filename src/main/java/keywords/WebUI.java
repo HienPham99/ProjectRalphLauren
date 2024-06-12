@@ -26,7 +26,7 @@ public class WebUI {
 
     private static int TIMEOUT = 10; //time chờ của WebDriverWait
     private static double STEP_TIME = 0.5; // time chờ đợi của hàm sleep
-    private static int PAGE_LOAD_TIMEOUT = 40;//time chờ đợi trang load xong
+    private static int PAGE_LOAD_TIMEOUT = 60;//time chờ đợi trang load xong
 
     public static void sleep(double seconds) {
         try {
@@ -71,8 +71,8 @@ public class WebUI {
 
     @Step("Click Element: {0}")
     public static void clickElement(By by) {
-        // waitForElementClickable(by);
-        WebUI.sleep(3);
+        //waitForElementClickable(by);
+        WebUI.sleep(5);
         getWebElement(by).click();
         System.out.println("Click Element: " + by);
     }
@@ -98,7 +98,7 @@ public class WebUI {
     }
 
     public static void waitForPageLoaded() {
-        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(PAGE_LOAD_TIMEOUT), Duration.ofMillis(1400));
+        WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(PAGE_LOAD_TIMEOUT), Duration.ofMillis(1800));
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.getDriver();
 
         //Wait for Javascript to load
@@ -121,6 +121,16 @@ public class WebUI {
             } catch (Throwable error) {
                 Assert.fail("❌FAILED. Timeout waiting for page load.");
             }
+        }
+    }
+
+    public static void waitForElementClickable(By by) {
+        try {
+            WebDriverWait wait = new WebDriverWait(DriverManager.getDriver(), Duration.ofSeconds(TIMEOUT), Duration.ofMillis(1100));
+            wait.until(ExpectedConditions.elementToBeClickable(getWebElement(by)));
+        } catch (Throwable error) {
+            Assert.fail("Timeout waiting for the element ready to click. " + by.toString());
+
         }
     }
 
